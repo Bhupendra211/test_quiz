@@ -1,6 +1,6 @@
 import express from 'express';
 import { addQuestion, createQuiz, deleteQuestion, getAllQuestions, getAllQuiz, updateQuestion, updateQuiz, deleteQuiz, getQuizById } from '../../controllers/admin/quiz.controller.js';
-import { getAllUser } from '../../controllers/admin/users.controller.js';
+import { deleteUser, getAllUser } from '../../controllers/admin/users.controller.js';
 import { errorResponse } from '../../utils/responseHandler.js';
 // import { addCodingProblem, deleteCodingProblemById, deleteTestCase, getAllProblems, getProblemById, saveProblem, updateProblemById } from '../../controllers/admin/codingProblem.controller.js';
 import { generateResult, getAllResults } from '../../controllers/admin/result.controller.js';
@@ -9,7 +9,7 @@ const adminQuiz = express.Router();
 
 // ************************User Related Routes************************************
 adminQuiz.get('/all-users', getAllUser);
-
+adminQuiz.delete('/delete-user/:id',deleteUser);
 
 // **************************Quiz&Question Routes*************************************
 // Create Quiz

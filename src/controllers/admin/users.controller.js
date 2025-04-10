@@ -21,3 +21,20 @@ export const getAllUser = asyncHandler(async (req, res) => {
         return errorResponse(res, 500, "Internal Server Error");
     }
 })
+
+export const deleteUser = asyncHandler(async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+        const deletedUser = await User.findByIdAndDelete(userId);
+
+        if (!deletedUser) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.status(200).json({ success: true, message: "User deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+});
